@@ -5,7 +5,8 @@
 
 
 **效果图:**
-![](images/Simulator Screen Shot 2017年9月10日 15.02.43.png)
+![](images/3hm03f42o193nnjau9w04yabwiw2984u.png)
 ***
-使用方法:
+*使用方法:*
+
 将项目中的文件`HXBubbleTipView.h`和`HXBubbleTipView.m`导入到项目中即可使用
