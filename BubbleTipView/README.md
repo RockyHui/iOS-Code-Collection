@@ -1,11 +1,11 @@
 # 仿ins新功能气泡提示控件
 **ins新功能提示气泡:**
 
-![](images/3hm03f42o193nnjau9w04yabwiw2984u.png)
+![](images/00001.png)
 
 
 **效果图:**
-![](images/dfgedfg2o193nnjau9w04dfdabwiw2984u.png)
+![](images/00002.png)
 ***
 **使用方法:**
 
