@@ -1,6 +1,9 @@
+
 #iOS开发中屏幕旋转的那些坑
 
+
 ##前言
+
 随着苹果设备更新换代过程中，设备的屏幕尺寸也越做越大，设备上的应用可以自由旋转也被越来越重视。
 
 如果iPad上的一个应用不能旋转，那么这必然将会为用户体验减分。
@@ -16,6 +19,7 @@
 是的，我们就聊一下这个通知的坑。
 
 ## 1.神奇的通知
+
 为什么说`UIDeviceOrientationDidChangeNotification`这个通知是神奇的？
 
 请按照以下步骤操作：
@@ -45,6 +49,7 @@
 如果你在监听的方法中进行了消耗资源的响应动作或者进行了页面重新布局，那么这样的话就白白浪费了CPU时间，甚至会出错。
 
 ##2.UIDeviceOrientation & UIInterfaceOrientation
+
 在说`UIDeviceOrientationDidChangeNotification`通知之前，我们先两个枚举类型。
 
 对于初学者来说，`UIDeviceOrientation`和`UIInterfaceOrientation`很容易搞混，那这个两个有什么不同。
@@ -72,12 +77,15 @@
 **1.UIDeviceOrientation改变时，UIInterfaceOrientation不一定改变。**
 
 其中包括设备旋转屏幕朝上（UIDeviceOrientationFaceUp）、朝下（UIDeviceOrientationFaceDown）和用户禁止了界面旋转两种情况。
+
 ![](images/configuration.png)
+
 在项目工程中可以配置允许旋转的方向。
 
 **2. `UIInterfaceOrientation`旋转触发时，`UIDeviceOrientation`一定改变。因为用户界面是根据设备方向来改变的。**
 
 ##2.监听屏幕旋转的正确姿势
+
 根据以上的总结内容，我们应该去`<UIKit/UIApplication.h>`中找看有没有相关通知定义。
 
 我们找到如下两个方法。
@@ -104,6 +112,7 @@
 所以，监听`UIApplicationWillChangeStatusBarOrientationNotification`和`UIApplicationDidChangeStatusBarOrientationNotification`这两个通知才是正确的监听屏幕旋转的姿势。并且还可以得到界面改变之前的方向和改变之后的方向。
 
 ##3.总结
+
 虽然我们知道了怎样监听屏幕的旋转，但是本着深究问题的精神，对`UIDeviceOrientationDidChangeNotification`这个通知做简要讨论和猜测。
 
 1.从通知的信息字典中打印出的`UIDeviceOrientationRotateAnimatedUserInfoKey`可以看到，该值有时为1，有时为0。去网上查找资料，发现几乎没有什么有用信息，官方文档也没什么有用的信息。这可能是苹果官方认为我们根本无法用到这个键值。从字面看，大概意思是指“**方向旋转动画**”，应该是指旋转中是否使用了过渡动画。哈哈😆，不知道是不是这样的。
@@ -118,6 +127,7 @@
 <br>
 <br>
 ###备注
+
 >本文系博主原创文章，欢迎转载，但请标注文章来源。
 >
 >文中若有晦涩之处，欢迎评论指正。
