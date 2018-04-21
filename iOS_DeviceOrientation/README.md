@@ -12,7 +12,7 @@
 
 当然今天说的不是自动布局问题，而是设备的旋转问题。
 
-首先，请问大家监听屏幕旋转的时候，都监听得是哪个通知？
+首先，请问大家监听屏幕旋转的时候，都监听的是哪个通知？
 
 很多人都用用到`UIDeviceOrientationDidChangeNotification`，顾名思义，这个通知字面意思就是设备旋转改变通知。
 
@@ -27,7 +27,7 @@
 1. 监听`UIDeviceOrientationDidChangeNotification`通知。
 2. 在监听回调方法中NSLog打印通知信息。
 3. 启动应用，看看控制台的输出信息。
-4. 不要旋转屏幕，让应用退到后台（command + hift + H），然后看控制台输出信息。
+4. 不要旋转屏幕，让应用退到后台（command + shift + H），然后看控制台输出信息。
 5. 然后再启动应用，看控制台的输出结果。
 
 以下是我的控制台3次操作的输出信息：
@@ -50,9 +50,9 @@
 
 ##2.UIDeviceOrientation & UIInterfaceOrientation
 
-在说`UIDeviceOrientationDidChangeNotification`通知之前，我们先两个枚举类型。
+在说`UIDeviceOrientationDidChangeNotification`通知之前，我们先看两个枚举类型。
 
-对于初学者来说，`UIDeviceOrientation`和`UIInterfaceOrientation`很容易搞混，那这个两个有什么不同。
+对于初学者来说，`UIDeviceOrientation`和`UIInterfaceOrientation`很容易搞混，那这两个有什么不同。
 
 1. `UIDeviceOrientation`是指设备方向，`UIInterfaceOrientation`是指用户界面。一个是指硬件，一个是指软件。
 
@@ -86,9 +86,9 @@
 
 ##2.监听屏幕旋转的正确姿势
 
-根据以上的总结内容，我们应该去`<UIKit/UIApplication.h>`中找看有没有相关通知定义。
+根据以上的总结内容，我们应该去`<UIKit/UIApplication.h>`中找看有没有相关定义的通知。
 
-我们找到如下两个方法。
+结果我们找到如下两个方法。
 在不确定具体表示什么的时候，最直接的是去查官方文档。
 
 1.`UIApplicationWillChangeStatusBarOrientationNotification`
@@ -115,7 +115,7 @@
 
 虽然我们知道了怎样监听屏幕的旋转，但是本着深究问题的精神，对`UIDeviceOrientationDidChangeNotification`这个通知做简要讨论和猜测。
 
-1.从通知的信息字典中打印出的`UIDeviceOrientationRotateAnimatedUserInfoKey`可以看到，该值有时为1，有时为0。去网上查找资料，发现几乎没有什么有用信息，官方文档也没什么有用的信息。这可能是苹果官方认为我们根本无法用到这个键值。从字面看，大概意思是指“**方向旋转动画**”，应该是指旋转中是否使用了过渡动画。哈哈😆，不知道是不是这样的。
+1.从通知的信息字典中打印出的`UIDeviceOrientationRotateAnimatedUserInfoKey`可以看到，该值有时为1，有时为0。去网上查找资料，发现几乎没有什么有用信息，官方文档也没什么说明信息。这可能是苹果官方认为我们根本无法用到这个键值。从字面看，大概意思是指“**方向旋转动画**”，应该是指旋转中是否使用了过渡动画。哈哈😆，不知道是不是这样的。
 
 2.为什么在应用进入前台和后台的时候，系统都会发送这个通知？
 
