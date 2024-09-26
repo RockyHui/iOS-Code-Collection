@@ -1,8 +1,8 @@
 
-#iOS开发中屏幕旋转的那些坑
+# iOS开发中屏幕旋转的那些坑
 
 
-##前言
+## 前言
 
 随着苹果设备更新换代过程中，设备的屏幕尺寸也越做越大，设备上的应用可以自由旋转也被越来越重视。
 
@@ -48,7 +48,7 @@
 
 如果你在监听的方法中进行了消耗资源的响应动作或者进行了页面重新布局，那么这样的话就白白浪费了CPU时间，甚至会出错。
 
-##2.UIDeviceOrientation & UIInterfaceOrientation
+## 2.UIDeviceOrientation & UIInterfaceOrientation
 
 在说`UIDeviceOrientationDidChangeNotification`通知之前，我们先看两个枚举类型。
 
@@ -84,7 +84,7 @@
 
 **2. `UIInterfaceOrientation`旋转触发时，`UIDeviceOrientation`一定改变。因为用户界面是根据设备方向来改变的。**
 
-##2.监听屏幕旋转的正确姿势
+## 2.监听屏幕旋转的正确姿势
 
 根据以上的总结内容，我们应该去`<UIKit/UIApplication.h>`中找看有没有相关定义的通知。
 
@@ -111,7 +111,7 @@
 
 所以，监听`UIApplicationWillChangeStatusBarOrientationNotification`和`UIApplicationDidChangeStatusBarOrientationNotification`这两个通知才是正确的监听屏幕旋转的姿势。并且还可以得到界面改变之前的方向和改变之后的方向。
 
-##3.总结
+## 3.总结
 
 虽然我们知道了怎样监听屏幕的旋转，但是本着深究问题的精神，对`UIDeviceOrientationDidChangeNotification`这个通知做简要讨论和猜测。
 
@@ -126,7 +126,7 @@
 苹果可能为了规避这一问题，在应用唤起的时候自动发送该通知，即使休眠期间设备的方向没有旋转过，让应用可以及时作出响应，提高了用户的体验。
 <br>
 <br>
-###备注
+### 备注
 
 >本文系博主原创文章，欢迎转载，但请标注文章来源。
 >
